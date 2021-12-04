@@ -22,11 +22,11 @@ public class TestSePlayer : MonoBehaviour
 	public void PlaySE()
 	{
 		//サウンドマネージャーからサウンドIDを渡して紐づいているオーディオクリップを取得
-		var clip = SoundManager.Instance.GetSEAudioClip(m_SoundID);
+		var clip = SoundManager.Instance.GetSEAudioClip((int)m_SoundID);
 		//オーディオの名前を設定する
 		m_DisplayAudioName.SetAudioName(clip.name);
 		//SEを再生
-		SoundManager.Instance.PlayMenuSE(m_SoundID);
+		SoundManager.Instance.PlayMenuSE((int)m_SoundID);
 	}
 
 	/// <summary>

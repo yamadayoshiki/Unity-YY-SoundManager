@@ -174,7 +174,7 @@ public class SoundManager : MonoBehaviour
 	/// BGMの再生
 	/// </summary>
 	/// <param name="clipName"> 再生するサウンドの名前 </param>
-	public void PlayBGM(BGMSoundID soundID)
+	public void PlayBGM(int soundID)
 	{
 		PlayBGMWithFade(soundID, 0.1f);
 	}
@@ -185,7 +185,7 @@ public class SoundManager : MonoBehaviour
 	/// </summary>
 	/// <param name="clipName"> サウンドデータの名前 </param>
 	/// <param name="fadeTime"> フェード処理の時間 </param>
-	public void PlayBGMWithFade(BGMSoundID soundID, float fadeTime)
+	public void PlayBGMWithFade(int soundID, float fadeTime)
 	{
 		//一時停止中なら処理をしない
 		if (IsPaused) return;
@@ -251,7 +251,7 @@ public class SoundManager : MonoBehaviour
 	/// メニューSEの再生
 	/// </summary>
 	/// <param name="soundID"></param>
-	public void PlayMenuSE(SESoundID soundID)
+	public void PlayMenuSE(int soundID)
 	{
 		//一時停止中なら処理をしない
 		if (IsPaused) return;
@@ -358,7 +358,7 @@ public class SoundManager : MonoBehaviour
 	/// </summary>
 	/// <param name="soundID"></param>
 	/// <returns></returns>
-	public AudioClip GetBGMAudioClip(BGMSoundID soundID)
+	public AudioClip GetBGMAudioClip(int soundID)
 	{
 		return m_BgmSoundList.GetAudioClip((int)soundID);
 	}
@@ -368,7 +368,7 @@ public class SoundManager : MonoBehaviour
 	/// </summary>
 	/// <param name="soundID"></param>
 	/// <returns></returns>
-	public AudioClip GetSEAudioClip(SESoundID soundID)
+	public AudioClip GetSEAudioClip(int soundID)
 	{
 		return m_SeSoundList.GetAudioClip((int)soundID);
 	}

@@ -30,13 +30,13 @@ public class TestBgmPlayer : MonoBehaviour
 	public void PlayBGM()
 	{
 		//サウンドマネージャーからサウンドIDを渡して紐づいているオーディオクリップを取得
-		var clip = SoundManager.Instance.GetBGMAudioClip(m_SoundID);
+		var clip = SoundManager.Instance.GetBGMAudioClip((int)m_SoundID);
 		//オーディオの名前を設定する
 		m_DisplayAudioName.SetAudioName(clip.name);
 		//再生されている場合も考慮して一度停止の処理を行う
 		SoundManager.Instance.StopBGMWithFade(m_FadeTime);
 		//フェードインしながらBGMを再生
-		SoundManager.Instance.PlayBGMWithFade(m_SoundID, m_FadeTime);
+		SoundManager.Instance.PlayBGMWithFade((int)m_SoundID, m_FadeTime);
 	}
 
 	/// <summary>
