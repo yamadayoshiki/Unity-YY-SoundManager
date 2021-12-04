@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Linq;
+using YY.Sound;
 
 public class TestSePlayer : MonoBehaviour
 {

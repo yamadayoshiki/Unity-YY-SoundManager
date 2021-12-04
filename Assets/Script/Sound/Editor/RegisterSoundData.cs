@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using YY.Sound;
 
 /// <summary>
 /// サウンドデータ登録クラス

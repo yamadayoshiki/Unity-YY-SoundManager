@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
+using YY.Sound;
 
 public class RegisterSoundDataWindow : EditorWindow
 {
