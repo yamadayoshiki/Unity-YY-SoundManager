@@ -35,7 +35,7 @@ public class RegisterSoundDataWindow : EditorWindow
 	private string m_EnumFileExportPath = "Assets/Script/Sound/Enum/";
 
 
-	[MenuItem("Editor/RegisterSoundData")]
+	[MenuItem("YY-Tool/Register SoundData")]
 	private static void Open()
 	{
 		GetWindow<RegisterSoundDataWindow>("サウンドデータの登録");
@@ -45,7 +45,7 @@ public class RegisterSoundDataWindow : EditorWindow
 	private void OnGUI()
 	{
 		//読み込むファイルを指定する
-		EditorGUILayout.LabelField("読み込むオーディオファイル");
+		EditorGUILayout.LabelField("読み込むオーディオファイルのパス");
 		m_LoadFilePath = EditorGUILayout.TextField(m_LoadFilePath);
 
 		//サウンドの種類を選択
@@ -57,7 +57,7 @@ public class RegisterSoundDataWindow : EditorWindow
 		m_FileName = EditorGUILayout.TextField(m_FileName);
 
 		//サウンドデータリスト保存先を記入する
-		EditorGUILayout.LabelField("サウンドデータリストの保存先");
+		EditorGUILayout.LabelField("サウンドデータリストの保存先ファイルパス");
 		m_ExportFilePath = EditorGUILayout.TextField(m_ExportFilePath);
 
 		//保存するファイルの名前を決める
@@ -65,7 +65,7 @@ public class RegisterSoundDataWindow : EditorWindow
 		m_EnumFileName = EditorGUILayout.TextField(m_EnumFileName);
 
 		//Enumの保存先を記入する
-		EditorGUILayout.LabelField("Enumの保存先");
+		EditorGUILayout.LabelField("Enumの保存先ファイルパス");
 		m_EnumFileExportPath = EditorGUILayout.TextField(m_EnumFileExportPath);
 
 		//ボタンにサウンドデータリストを作成機能をつける
