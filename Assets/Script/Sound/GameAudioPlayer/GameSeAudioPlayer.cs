@@ -49,7 +49,6 @@ namespace YY.Sound
 		/// </summary>
 		private readonly Dictionary<string, Queue<GameSeInfo>> m_PlaySeTable = new Dictionary<string, Queue<GameSeInfo>>();
 
-		// Start is called before the first frame update
 		protected override void Start()
 		{
 			base.Start();
@@ -141,6 +140,14 @@ namespace YY.Sound
 					Debug.LogError("Œø‰Ê‰¹‚ÌÅ‘å“o˜^”‚ğ’´‚¦‚Ä‚¢‚Ü‚·B" + info.AudioName);
 				}
 			}
+		}
+
+		/// <summary>
+		/// ƒTƒEƒ“ƒh‚Ì’â~
+		/// </summary>
+		public override void StopSound()
+		{
+			m_AudioSource.Stop();
 		}
 
 		/// <summary>

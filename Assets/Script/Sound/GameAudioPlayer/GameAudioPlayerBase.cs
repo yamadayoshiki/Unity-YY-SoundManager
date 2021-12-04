@@ -17,6 +17,7 @@ namespace YY.Sound
 		/// <summary>
 		/// 実行時に再生を開始するか
 		/// </summary>
+		[SerializeField]
 		protected bool m_IsPlayOnAwake = false;
 
 		/// <summary>
@@ -24,15 +25,18 @@ namespace YY.Sound
 		/// </summary>
 		public bool IsPaused { get; private set; }
 
-		protected virtual void Start()
+		protected virtual void Awake()
 		{
-			//サウンドマネージャーのAudioPausebleListに追加
-			SoundManager.Instance.SetAudioPausebleList(this);
-
 			//オーディオソースの取得
 			m_AudioSource = GetComponent<AudioSource>();
 			//オーディオソースの初期化
 			InitializeAudioSource();
+		}
+
+		protected virtual void Start()
+		{
+			//サウンドマネージャーのAudioPausebleListに追加
+			SoundManager.Instance.SetAudioPausebleList(this);
 
 			//フラグがtrueなら再生
 			if (m_IsPlayOnAwake)
@@ -45,6 +49,11 @@ namespace YY.Sound
 		/// サウンドの再生
 		/// </summary>
 		public abstract void PlaySound();
+
+		/// <summary>
+		/// サウンドの停止
+		/// </summary>
+		public abstract void StopSound();
 
 		/// <summary>
 		/// オーディオを一時停止
@@ -75,6 +84,8 @@ namespace YY.Sound
 		/// </summary>
 		protected virtual void InitializeAudioSource()
 		{
+			//PlayOnAwakeで再生した場合のために一度停止の処理を呼ぶ
+			m_AudioSource.Stop();
 			m_AudioSource.playOnAwake = false;
 			m_AudioSource.volume = 1.0f;
 			m_AudioSource.pitch = 1.0f;
