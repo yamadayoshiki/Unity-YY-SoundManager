@@ -19,4 +19,8 @@ public class SoundManagerSetting : ScriptableObject
 	{
 		get { return m_MenuSEAudioPlayerNum; }
 	}
+
+	[SerializeField, Header("サウンドデータの読み込み先ファイルパス")]
+	private string m_SoundDataFilePth = "Data/Sound/";
+	public string SoundDataFilePath { get { return m_SoundDataFilePth; } }
 }

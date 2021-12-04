@@ -40,18 +40,9 @@ public class SoundManager : MonoBehaviour
 	private int m_NextMenuSeAudioPlayerNumber = 0;
 
 	/// <summary>
-	/// サウンドデータの読み込み先パス
+	/// サウンドデータテーブル
 	/// </summary>
-	[SerializeField]
-	private const string m_SoundDataFilePth = "Data/Sound/";
-
-	/// <summary>
-	/// 各サウンドデータリスト
-	/// </summary>
-	[SerializeField]
-	private SoundDataList m_BgmSoundList = null;
-	[SerializeField]
-	private SoundDataList m_SeSoundList = null;
+	private Dictionary<SoundType, SoundDataList> m_SoundDataTable = new Dictionary<SoundType, SoundDataList>();
 
 	/// <summary>
 	/// 一時停止フラグ
@@ -100,6 +91,9 @@ public class SoundManager : MonoBehaviour
 			DontDestroyOnLoad(this.gameObject);
 		}
 
+		//オーディオミキサーマネージャーを取得
+		TryGetComponent(out m_AudioMixerManager);
+
 		//SoundManagerの設定データの読み込み
 		if (m_SoundManagerSetting == null) m_SoundManagerSetting = Resources.Load<SoundManagerSetting>("Data/Sound/SoundManagerSetting");
 		if (m_SoundManagerSetting == null) Debug.LogError("サウンドマネージャー設定データの読み込みに失敗");
@@ -136,28 +130,15 @@ public class SoundManager : MonoBehaviour
 	/// <returns> 成功たらtrue 失敗ならfalse </returns>
 	private bool LoadSoundData()
 	{
-		var datas = Resources.LoadAll<SoundDataList>("Data/Sound/");
+		var datas = Resources.LoadAll<SoundDataList>(m_SoundManagerSetting.SoundDataFilePath);
+		//nullならfalseを返す
+		if (datas == null) return false;
+
 		foreach (var soundList in datas)
 		{
-			switch (soundList.SoundType)
-			{
-				case SoundType.BGM:
-					m_BgmSoundList = soundList;
-					break;
-				case SoundType.SE:
-					m_SeSoundList = soundList;
-					break;
-					//case SoundType.GameSE:
-					//	m_GameSeList = soundList;
-					//	break;
-					//case SoundType.MenuSE:
-					//	m_MenuSeList = soundList;
-					//	break;
-					//case SoundType.Jingle:
-					//	m_JingleList = soundList;
-					//	break;
-			}
+			m_SoundDataTable.Add(soundList.SoundType, soundList);
 		}
+
 		return true;
 	}
 
@@ -354,23 +335,35 @@ public class SoundManager : MonoBehaviour
 	}
 
 	/// <summary>
+	/// オーディオクリップの取得
+	/// </summary>
+	/// <param name="soundType"> サウンドの種類を指定(BGM,SE,Voice,etc...) </param>
+	/// <param name="soundID"> サウンドID </param>
+	/// <returns></returns>
+	public AudioClip GetAudioClip(SoundType soundType, int soundID)
+	{
+		return m_SoundDataTable[soundType].GetAudioClip(soundID);
+	}
+
+	/// <summary>
 	/// BGMオーディオクリップの取得
 	/// </summary>
 	/// <param name="soundID"></param>
 	/// <returns></returns>
 	public AudioClip GetBGMAudioClip(int soundID)
 	{
-		return m_BgmSoundList.GetAudioClip((int)soundID);
+		return GetAudioClip(SoundType.BGM, soundID);
 	}
 
 	/// <summary>
 	/// SEオーディオクリップの取得
+	/// サウンド種類SEに決め打ち
 	/// </summary>
-	/// <param name="soundID"></param>
+	/// <param name="soundID"> BGMサウンドID </param>
 	/// <returns></returns>
 	public AudioClip GetSEAudioClip(int soundID)
 	{
-		return m_SeSoundList.GetAudioClip((int)soundID);
+		return GetAudioClip(SoundType.SE, soundID);
 	}
 
 	/// <summary>
