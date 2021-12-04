@@ -216,6 +216,14 @@ namespace YY.Sound
 		protected override void InitializeAudioSource()
 		{
 			base.InitializeAudioSource();
+			if (m_3DSoundSetting == null) return;
+			//3Dサウンドの比率にする
+			m_AudioSource.spatialBlend = 1.0f;
+			//3Dサウンドの設定
+			m_AudioSource.dopplerLevel = m_3DSoundSetting.DopplerLeveget;
+			m_AudioSource.spread = m_3DSoundSetting.Spread;
+			m_AudioSource.minDistance = m_3DSoundSetting.MinDistance;
+			m_AudioSource.maxDistance = m_3DSoundSetting.MaxDistance;
 		}
 	}
 }

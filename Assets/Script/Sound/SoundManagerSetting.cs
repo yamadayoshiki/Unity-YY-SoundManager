@@ -5,7 +5,7 @@ namespace YY.Sound
 	/// <summary>
 	/// サウンドマネージャーの設定データクラス
 	/// </summary>
-	[CreateAssetMenu(fileName = "SoundManagerSetting", menuName = "Create/SoundManagerSetting")]
+	[CreateAssetMenu(fileName = "SoundManagerSetting", menuName = "Create/Sound/SoundManagerSetting")]
 	public class SoundManagerSetting : ScriptableObject
 	{
 		[SerializeField, Header("BGMの再生可能数")]

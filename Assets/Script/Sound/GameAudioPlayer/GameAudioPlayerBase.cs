@@ -15,6 +15,12 @@ namespace YY.Sound
 		protected AudioSource m_AudioSource = null;
 
 		/// <summary>
+		/// 3Dサウンドの設定データ
+		/// </summary>
+		[SerializeField]
+		protected Game3DSoundSetteing m_3DSoundSetting = null;
+
+		/// <summary>
 		/// 実行時に再生を開始するか
 		/// </summary>
 		[SerializeField]

@@ -24,8 +24,9 @@ public class RotateObject : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		//‰ñ“]‘¬“x‚©‚ç‰ñ“]Šp“x‚ğ‹‚ß‚é
 		m_RotateAngle = m_RotateSpeed * Time.deltaTime;
-
+		//‰ñ“]Šp“x‚ğ”½‰f
 		Quaternion rotate = Quaternion.Euler(0.0f, m_RotateAngle, 0.0f);
 		this.transform.rotation *= rotate;
 	}
